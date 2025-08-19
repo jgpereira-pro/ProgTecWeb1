@@ -29,7 +29,12 @@ public class UsuarioController {
     @GetMapping("/listarPorIdUsuario{idUsuario}")
     @Operation(summary = "Listar usuarios do sistema por id do usuario")
     public ResponseEntity<Usuario> listerPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario){
-        return ResponseEntity.ok(usuarioService.listarUsuarioPorId(idUsuario));
+        Usuario usuario = usuarioService.listarUsuarioPorId(idUsuario);
+        if (usuario == null) {
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.ok(usuario);
+        }
     }
 
     @PostMapping("/atualizar")
