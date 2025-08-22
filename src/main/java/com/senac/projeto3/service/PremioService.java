@@ -18,7 +18,7 @@ public class PremioService {
         return this.premioRepository.findAll();
     }
 
-    public Premio listarPremioPorId(int idUsuario){
+    public Premio listarPremioPorId(int idPremio){
         return this.premioRepository.findById(idPremio).orElse(null);
     }
 }
