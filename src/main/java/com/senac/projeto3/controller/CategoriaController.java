@@ -28,7 +28,7 @@ public class CategoriaController {
 
     @GetMapping("/listarPorIdCategoria{idCategoria}")
     @Operation(summary = "Listar categorias do sistema por id das categorias")
-    public ResponseEntity<Categoria> listerPorIdUsuario(@PathVariable("idCategoria") Integer idCategoria){
+    public ResponseEntity<Categoria> listerPorIdJogo(@PathVariable("idCategoria") Integer idCategoria){
         Categoria categoria = categoriaService.listarCategoriaPorId(idCategoria);
         if (categoria == null) {
             return ResponseEntity.noContent().build();

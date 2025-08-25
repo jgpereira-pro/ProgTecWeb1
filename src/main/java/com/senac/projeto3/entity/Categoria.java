@@ -1,6 +1,7 @@
 package com.senac.projeto3.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categoria")
@@ -13,6 +14,17 @@ public class Categoria {
     private String nome;
     @Column(name = "categoria_status", nullable = false)
     private int status;
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Jogo> jogos;
+
+    public List<Jogo> getJogos() {
+        return jogos;
+    }
+
+    public void setJogos(List<Jogo> jogos) {
+        this.jogos = jogos;
+    }
 
     public int getId() {
         return id;
