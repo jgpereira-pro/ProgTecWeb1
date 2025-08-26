@@ -17,13 +17,13 @@ public class JogoController {
     private final JogoService jogoService;
 
     public JogoController(JogoService jogoService) {
-        this.jogoService =jogoService;
+        this.jogoService = jogoService;
     }
 
     @GetMapping("/listar")
     @Operation(summary = "Listar jogo do sistema")
     public ResponseEntity<List<Jogo>> listar(){
-        return ResponseEntity.ok(jogoService.listarjogos());
+        return ResponseEntity.ok(jogoService.listarJogos());
     }
 
     @GetMapping("/listarPorIdJogo{idJogo}")

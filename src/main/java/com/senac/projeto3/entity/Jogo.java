@@ -1,7 +1,9 @@
 package com.senac.projeto3.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.List;
 
 @Entity
 @Table(name = "jogo")
@@ -19,6 +21,17 @@ public class Jogo {
     @JoinColumn(name = "categoria_id", nullable = false)
     @JsonIgnore
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "inscricao")
+    private List<Inscricao> inscricoes;
+
+    public List<Inscricao> getIncricoes() {
+        return inscricoes;
+    }
+
+    public void setInscricoes(List<Inscricao> Inscricoes) {
+        this.inscricoes = inscricoes;
+    }
 
     public Categoria getCategoria() {
         return categoria;

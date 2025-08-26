@@ -2,6 +2,8 @@ package com.senac.projeto3.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "participante")
 public class Participante {
@@ -21,6 +23,17 @@ public class Participante {
     private byte[] fotoPerfil;
     @Column(name = "participante_status", nullable = false)
     private int status;
+
+    @OneToMany(mappedBy = "participante")
+    private List<Inscricao> inscricoes;
+
+    public List<Inscricao> getInscricoes() {
+        return inscricoes;
+    }
+
+    public void setInscricoes(List<Inscricao> inscricoes) {
+        this.inscricoes = inscricoes;
+    }
 
     public int getId() {
         return id;
