@@ -3,6 +3,7 @@ package com.senac.projeto3.service;
 import com.senac.projeto3.entity.Premio;
 import com.senac.projeto3.repository.PremioRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -18,7 +19,7 @@ public class PremioService {
         return this.premioRepository.findAll();
     }
 
-    public Premio listarPremioPorId(int idPremio){
-        return this.premioRepository.findById(idPremio).orElse(null);
+    public Premio listarPremioPorId(int idUsuario){
+        return this.premioRepository.findById(idUsuario).orElse(null);
     }
 }

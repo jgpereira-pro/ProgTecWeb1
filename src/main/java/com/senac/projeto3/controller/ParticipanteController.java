@@ -5,15 +5,17 @@ import com.senac.projeto3.service.ParticipanteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/participante")
-@Tag(name="Participante", description ="API para gerenciamento dos participantes do sistema")
+@Tag(name="Participante", description="API para gerenciamento dos participantes do sistema")
 public class ParticipanteController {
-
     private final ParticipanteService participanteService;
 
     public ParticipanteController(ParticipanteService participanteService) {
@@ -21,14 +23,14 @@ public class ParticipanteController {
     }
 
     @GetMapping("/listar")
-    @Operation(summary = "Listar participante do sistema")
+    @Operation(summary = "Listar usuarios do sistema")
     public ResponseEntity<List<Participante>> listar(){
         return ResponseEntity.ok(participanteService.listarParticipantes());
     }
 
-    @GetMapping("/listarPorIdParticipante{idParticipante}")
-    @Operation(summary = "Listar participantes do sistema por id dos participantes")
-    public ResponseEntity<Participante> listerPorIdParticipante(@PathVariable("idParticipante") Integer idParticipante){
+    @GetMapping("/listarPorIdParticipante/{idParticipante}")
+    @Operation(summary = "Listar usuarios do sistema pelo id do usuário")
+    public ResponseEntity<Participante> listarPorIdUsuario(@PathVariable("idParticipante") Integer idParticipante){
         Participante participante = participanteService.listarParticipantePorId(idParticipante);
         if (participante == null) {
             return ResponseEntity.noContent().build();
@@ -37,18 +39,4 @@ public class ParticipanteController {
         }
     }
 
-    @PostMapping("/atualizar")
-    public String criar(){
-        return "Participante criado com sucesso";
-    }
-
-    @PutMapping("/criar")
-    public String atualizar(){
-        return "Participante atualizado com sucesso";
-    }
-
-    @DeleteMapping("/apagar")
-    public String apagar(){
-        return "Participante apagado com sucesso";
-    }
 }

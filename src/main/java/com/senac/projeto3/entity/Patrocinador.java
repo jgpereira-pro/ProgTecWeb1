@@ -3,22 +3,23 @@ package com.senac.projeto3.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "patrocinador")
+@Table(name="patrocinador")
 public class Patrocinador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "patrocinador_id")
+    @Column(name="patrocinador_id")
     private int id;
-    @Column(name = "patrocinador_nome", nullable = false, length = 100)
+    @Column(name="patrocinador_nome")
     private String nome;
-    @Column(name = "patrocinador_representante_nome", length = 100)
+    @Column(name="patrocinador_representante_nome")
     private String representanteNome;
-    @Column(name = "patrocinador_status", nullable = false)
+    @Column(name="patrocinador_status")
     private int status;
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -26,6 +27,7 @@ public class Patrocinador {
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -33,6 +35,7 @@ public class Patrocinador {
     public String getRepresentanteNome() {
         return representanteNome;
     }
+
     public void setRepresentanteNome(String representanteNome) {
         this.representanteNome = representanteNome;
     }
@@ -40,6 +43,7 @@ public class Patrocinador {
     public int getStatus() {
         return status;
     }
+
     public void setStatus(int status) {
         this.status = status;
     }

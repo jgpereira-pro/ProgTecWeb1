@@ -1,20 +1,21 @@
 package com.senac.projeto3.entity;
 
-import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "jogo")
+@Table(name="jogo")
 public class Jogo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "jogo_id")
     private int id;
-    @Column(name = "jogo_nome", nullable = false, length = 30)
+    @Column(name = "jogo_nome")
     private String nome;
-    @Column(name = "jogo_status", nullable = false)
+    @Column(name = "jogo_status")
     private int status;
 
     @ManyToOne
@@ -22,31 +23,15 @@ public class Jogo {
     @JsonIgnore
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "inscricao")
+    @OneToMany(mappedBy = "jogo")
     private List<Inscricao> inscricoes;
 
-    public List<Inscricao> getIncricoes() {
-        return inscricoes;
+    public int getId() {
+        return id;
     }
 
-    public void setInscricoes(List<Inscricao> Inscricoes) {
-        this.inscricoes = inscricoes;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -57,11 +42,27 @@ public class Jogo {
         this.nome = nome;
     }
 
-    public int getId() {
-        return id;
+    public int getStatus() {
+        return status;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<Inscricao> getInscricoes() {
+        return inscricoes;
+    }
+
+    public void setInscricoes(List<Inscricao> inscricoes) {
+        this.inscricoes = inscricoes;
     }
 }

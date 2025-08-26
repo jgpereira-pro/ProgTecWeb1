@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/usuario")
-@Tag(name="Usuario", description ="API para gerenciamento dos usuarios do sistema")
+@Tag(name="Usuario", description="API para gerenciamento dos usuarios do sistema")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -26,9 +26,9 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.listarUsuarios());
     }
 
-    @GetMapping("/listarPorIdUsuario{idUsuario}")
-    @Operation(summary = "Listar usuarios do sistema por id do usuario")
-    public ResponseEntity<Usuario> listerPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario){
+    @GetMapping("/listarPorIdUsuario/{idUsuario}")
+    @Operation(summary = "Listar usuarios do sistema pelo id do usuário")
+    public ResponseEntity<Usuario> listarPorIdUsuario(@PathVariable("idUsuario") Integer idUsuario){
         Usuario usuario = usuarioService.listarUsuarioPorId(idUsuario);
         if (usuario == null) {
             return ResponseEntity.noContent().build();
@@ -37,18 +37,18 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/atualizar")
+    @PostMapping("/criar")
     public String criar(){
-        return "Usuario criado com sucesso";
+        return "Usuario Criado com sucesso!";
     }
 
-    @PutMapping("/criar")
+    @PutMapping("/atualizar")
     public String atualizar(){
-        return "Usuario atualizado com sucesso";
+        return  "Usuario atualizado com sucesso!";
     }
 
     @DeleteMapping("/apagar")
     public String apagar(){
-        return "Usuaria apagado com sucesso";
+        return "Usuario apagado com sucesso!";
     }
 }

@@ -3,6 +3,7 @@ package com.senac.projeto3.service;
 import com.senac.projeto3.entity.Categoria;
 import com.senac.projeto3.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service

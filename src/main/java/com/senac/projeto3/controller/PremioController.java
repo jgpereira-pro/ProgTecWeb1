@@ -5,15 +5,17 @@ import com.senac.projeto3.service.PremioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/premio")
-@Tag(name = "Premio", description = "API para gerenciamento dos premios do sistema")
+@Tag(name="Premio", description="API para gerenciamento dos premios do sistema")
 public class PremioController {
-
     private final PremioService premioService;
 
     public PremioController(PremioService premioService) {
@@ -21,34 +23,20 @@ public class PremioController {
     }
 
     @GetMapping("/listar")
-    @Operation(summary = "Listar premios do sistema")
-    public ResponseEntity<List<Premio>> listar() {
+    @Operation(summary = "Listar usuarios do sistema")
+    public ResponseEntity<List<Premio>> listar(){
         return ResponseEntity.ok(premioService.listarPremios());
     }
 
-    @GetMapping("/listarPorIdPremio{idPremio}")
-    @Operation(summary = "Listar premios do sistema por id do premio")
-    public ResponseEntity<Premio> listerPorIdPremio(@PathVariable("idPremio") Integer idPremio) {
+    @GetMapping("/listarPorIdpremio/{idPremio}")
+    @Operation(summary = "Listar premios do sistema pelo id do premio")
+    public ResponseEntity<Premio> listarPorIdpremio(@PathVariable("idPremio") Integer idPremio){
         Premio premio = premioService.listarPremioPorId(idPremio);
         if (premio == null) {
             return ResponseEntity.noContent().build();
-        } else {
+        }else{
             return ResponseEntity.ok(premio);
         }
     }
 
-    @PostMapping("/atualizar")
-    public String criar() {
-        return "Premio criado com sucesso";
-    }
-
-    @PutMapping("/criar")
-    public String atualizar() {
-        return "Premio atualizado com sucesso";
-    }
-
-    @DeleteMapping("/apagar")
-    public String apagar() {
-        return "Premio apagado com sucesso";
-    }
 }
