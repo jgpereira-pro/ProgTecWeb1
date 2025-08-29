@@ -1,9 +1,12 @@
 package com.senac.projeto3.controller;
 
+import com.senac.projeto3.dto.responsive.UsuarioDtoResponsive;
 import com.senac.projeto3.entity.Usuario;
 import com.senac.projeto3.service.UsuarioService;
+import com.senac.projeto3.dto.request.UsuarioDtoRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,8 +41,9 @@ public class UsuarioController {
     }
 
     @PostMapping("/criar")
-    public String criar(){
-        return "Usuario Criado com sucesso!";
+    @Operation(summary = "Criar um novo usuario")
+    public ResponseEntity<UsuarioDtoResponsive>criar(@Valid @RequestBody UsuarioDtoRequest usuarioDtoRequest){
+        return ResponseEntity.ok(usuarioService.salvar(usuarioDtoRequest));
     }
 
     @PutMapping("/atualizar")
