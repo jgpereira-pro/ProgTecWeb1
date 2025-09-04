@@ -6,14 +6,17 @@ import jakarta.persistence.*;
 @Table(name="patrocinador")
 public class Patrocinador {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name="patrocinador_id")
     private int id;
-    @Column(name="patrocinador_nome")
+
+    @Column(name="patrocinador_nome",nullable = false,length = 100 )
     private String nome;
-    @Column(name="patrocinador_representante_nome")
+
+    @Column(name="patrocinador_representante_nome",nullable = false,length = 100)
     private String representanteNome;
-    @Column(name="patrocinador_status")
+
+    @Column(name="patrocinador_status",nullable = false)
     private int status;
 
     public int getId() {

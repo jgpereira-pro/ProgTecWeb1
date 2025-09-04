@@ -1,7 +1,7 @@
 package com.senac.projeto3.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,12 +10,14 @@ import java.util.List;
 @Table(name="jogo")
 public class Jogo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "jogo_id")
+    @GeneratedValue
+    @Column(name="jogo_id")
     private int id;
-    @Column(name = "jogo_nome")
+
+    @Column(name="jogo_nome",nullable = false,length = 30)
     private String nome;
-    @Column(name = "jogo_status")
+
+    @Column(name="jogo_status",nullable = false)
     private int status;
 
     @ManyToOne

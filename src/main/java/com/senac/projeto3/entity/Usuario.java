@@ -9,16 +9,21 @@ import java.time.LocalDate;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="usuario_id")
+    @Column(name = "usuario_id")
     private int id;
-    @Column(name="usuario_nome", nullable = false, length = 50)
+
+    @Column(name = "usuario_nome", nullable = false, length = 50)
     private String nome;
-    @Column(name="usuario_cpf", nullable = false, length = 11)
+
+    @Column(name = "usuario_cpf", nullable = false, length = 11)
     private String cpf;
-    @Column(name="usuario_data_nascimento", nullable = false)
+
+    @Column(name = "usuario_data_nascimento", nullable = false)
     private LocalDate dataNascimento;
-    @Column(name="usuario_status", nullable = false)
+
+    @Column(name = "usuario_status", nullable = false)
     private int status;
+
 
     public int getId() {
         return id;

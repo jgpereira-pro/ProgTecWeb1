@@ -1,7 +1,9 @@
 package com.senac.projeto3.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 
@@ -10,17 +12,38 @@ import java.time.LocalDateTime;
 public class Inscricao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="inscricao_id")
+    @Column(name = "inscricao_id")
     private int id;
-    @Column(name="inscricao_data")
+
+    @Column(name = "inscricao_data", nullable = false, length = 50)
     private LocalDateTime data;
-    @Column(name="inscricao_status")
+
+    @Column(name = "inscricao_status", nullable = false, length = 11)
     private int status;
 
+    @Transient
+    @JsonProperty("idParticipante")
+    public int getIdParticipante(){
+        return participante != null ? participante.getId() : null;
+    };
+
+    @Transient
+    @JsonProperty("nomeParticipante")
+    public String getNomeParticipante(){
+        return participante != null ? participante.getNome() : null;
+    };
+
+    @Transient
+    @JsonProperty("idJogo")
+    public int getIdJogo(){
+        return jogo != null ? jogo.getId() : null;
+    };
+
     @ManyToOne
-    @JoinColumn(name = "participante_id", nullable = false)
+    @JoinColumn(name = "participante_id")
     @JsonIgnore
     private Participante participante;
+
     @ManyToOne
     @JoinColumn(name = "jogo_id", nullable = false)
     @JsonIgnore

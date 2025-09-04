@@ -1,21 +1,23 @@
 package com.senac.projeto3.dto.request;
 
-import com.senac.projeto3.entity.Usuario;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.senac.projeto3.validators.ValidaDataNascimento;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class UsuarioDtoRequest {
-    private String nome;
-    private String cpf;
-    private LocalDate datadenascimento;
 
-    @Autowired
-    private ModelMapper modelMapper;
-    public Usuario converterParaEntidade(UsuarioDtoRequest usuarioDto) {
-        return modelMapper.map(usuarioDto, Usuario.class);
-    }
+    @NotBlank(message= "o nome é obrigatório")
+    private String nome;
+
+    @Size(min = 11, max= 11, message = "O cpf tem que ter 11 caracteres.")
+    @NotBlank(message = "o cpf é obrigatório")
+    private String cpf;
+
+    @ValidaDataNascimento
+    private LocalDate dataNascimento;
 
     public String getNome() {
         return nome;
@@ -33,11 +35,11 @@ public class UsuarioDtoRequest {
         this.cpf = cpf;
     }
 
-    public LocalDate getDatadenascimento() {
-        return datadenascimento;
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setDatadenascimento(LocalDate datadenascimento) {
-        this.datadenascimento = datadenascimento;
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }

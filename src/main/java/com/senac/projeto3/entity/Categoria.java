@@ -8,12 +8,14 @@ import java.util.List;
 @Table(name="categoria")
 public class Categoria {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name="categoria_id")
     private int id;
-    @Column(name="categoria_nome")
+
+    @Column(name="categoria_nome",nullable = false,length = 30)
     private String nome;
-    @Column(name="categoria_status")
+
+    @Column(name="categoria_status",nullable = false)
     private int status;
 
     @OneToMany(mappedBy = "categoria")

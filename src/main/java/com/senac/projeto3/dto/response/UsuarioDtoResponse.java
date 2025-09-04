@@ -1,6 +1,6 @@
-package com.senac.projeto3.dto.responsive;
+package com.senac.projeto3.dto.response;
 
-public class UsuarioDtoResponsive {
+public class UsuarioDtoResponse {
     private int id;
 
     public int getId() {

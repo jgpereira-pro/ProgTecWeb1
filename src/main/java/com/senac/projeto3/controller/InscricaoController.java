@@ -36,19 +36,4 @@ public class InscricaoController {
             return ResponseEntity.ok(inscricao);
         }
     }
-
-    @PostMapping("/atualizar")
-    public String criar(){
-        return "Categoria criado com sucesso";
-    }
-
-    @PutMapping("/criar")
-    public String atualizar(){
-        return "Categoria atualizado com sucesso";
-    }
-
-    @DeleteMapping("/apagar")
-    public String apagar(){
-        return "Categoria apagado com sucesso";
-    }
 }

@@ -1,9 +1,9 @@
 package com.senac.projeto3.controller;
 
-import com.senac.projeto3.dto.responsive.UsuarioDtoResponsive;
+import com.senac.projeto3.dto.response.UsuarioDtoResponse;
+import com.senac.projeto3.dto.request.UsuarioDtoRequest;
 import com.senac.projeto3.entity.Usuario;
 import com.senac.projeto3.service.UsuarioService;
-import com.senac.projeto3.dto.request.UsuarioDtoRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -42,17 +42,28 @@ public class UsuarioController {
 
     @PostMapping("/criar")
     @Operation(summary = "Criar um novo usuario")
-    public ResponseEntity<UsuarioDtoResponsive>criar(@Valid @RequestBody UsuarioDtoRequest usuarioDtoRequest){
+    public ResponseEntity<UsuarioDtoResponse>criar(@Valid @RequestBody UsuarioDtoRequest usuarioDtoRequest){
         return ResponseEntity.ok(usuarioService.salvar(usuarioDtoRequest));
     }
 
-    @PutMapping("/atualizar")
-    public String atualizar(){
-        return  "Usuario atualizado com sucesso!";
+    @PutMapping("/atualizar/{idUsuario}")
+    @Operation(summary = "Atualiza todos os parametros de um usuário.")
+    public ResponseEntity<UsuarioDtoResponse> atualizar(
+            @Valid @PathVariable("idUsuario") Integer idUsuario,
+            @RequestBody UsuarioDtoRequest usuarioDtoRequest){
+        return ResponseEntity.ok(usuarioService.atualizar(idUsuario,usuarioDtoRequest));
     }
 
-    @DeleteMapping("/apagar")
-    public String apagar(){
-        return "Usuario apagado com sucesso!";
+    @PatchMapping("/atualizarParametro")
+    @Operation(summary = "Atualiza um dos parametros de um usuário do sistema.")
+    public String atualizarParametro(){
+        return "Parametro atualizado com sucesso!";
+    }
+
+    @DeleteMapping("/apagar/{idUsuario}")
+    @Operation(summary = "Deleta um usuário do sistema pelo id.")
+    public ResponseEntity<UsuarioDtoResponse> apagar(@PathVariable("idUsuario") Integer idUsuario){
+        usuarioService.apagar(idUsuario);
+        return ResponseEntity.noContent().build();
     }
 }

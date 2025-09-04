@@ -9,19 +9,25 @@ import java.util.List;
 @Table(name="participante")
 public class Participante {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="participante_id")
+    @GeneratedValue
+    @Column(name = "participante_id")
     private int id;
-    @Column(name="participante_nome")
+
+    @Column(name="participante_nome",nullable = false,length = 300)
     private String nome;
-    @Column(name="participante_email")
+
+    @Column(name="participante_email",nullable = false,length = 45)
     private String email;
-    @Column(name="participante_identificacao")
+
+    @Column(name="participante_identificacao",nullable = false,length = 45)
     private String identificacao;
-    @Column(name="participante_endereco")
+
+    @Column(name="participante_endereco",nullable = false,length = 300)
     private String endereco;
+
     @Column(name="participante_foto_perfil")
-    private File foto_participante;
+    private File fotoPerfil;
+
     @Column(name="participante_status")
     private int status;
 
@@ -68,12 +74,12 @@ public class Participante {
         this.endereco = endereco;
     }
 
-    public File getFoto_participante() {
-        return foto_participante;
+    public File getFotoPerfil() {
+        return fotoPerfil;
     }
 
-    public void setFoto_participante(File foto_participante) {
-        this.foto_participante = foto_participante;
+    public void setFotoPerfil(File fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
     public int getStatus() {
