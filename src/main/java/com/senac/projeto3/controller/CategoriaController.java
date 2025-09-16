@@ -41,7 +41,6 @@ public class CategoriaController {
     @PostMapping("/criar")
     @Operation(summary = "Cria uma nova categoria no sistema.")
     public ResponseEntity<CategoriaDtoResponse> criar(@Valid @RequestBody CategoriaDtoRequest categoriaDtoRequest){
-
         return  ResponseEntity.ok(categoriaService.salvar(categoriaDtoRequest));
     }
 

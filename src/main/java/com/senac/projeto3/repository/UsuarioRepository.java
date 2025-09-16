@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface UsuarioRepository  extends JpaRepository<Usuario, Integer> {
 
-    @Query("SELECT u FROM Usuario u WHERE u.status >=0")
+    @Query("SELECT u FROM Usuario u WHERE u.status >= 0")
     List<Usuario> listarUsuariosAtivos();
 
     @Query("SELECT u FROM Usuario u WHERE u.id = :id AND u.status >= 0")
