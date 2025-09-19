@@ -3,7 +3,6 @@ package com.senac.projeto3.service;
 import com.senac.projeto3.dto.request.InscricaoDtoRequest;
 import com.senac.projeto3.dto.response.InscricaoDtoResponse;
 import com.senac.projeto3.entity.Inscricao;
-import com.senac.projeto3.entity.Participante;
 import com.senac.projeto3.repository.JogoRepository;
 import com.senac.projeto3.repository.InscricaoRepository;
 import com.senac.projeto3.repository.ParticipanteRepository;
@@ -42,8 +41,8 @@ public class InscricaoService {
         Inscricao inscricao = new Inscricao();
         inscricao.setData(inscricaoDtoRequest.getData());
         inscricao.setStatus(1);
-        inscricao.setJogo(jogoRepository.obterJogoAtivoPorId(inscricaoDtoRequest.getJogoId()));
-        inscricao.setParticipante(participanteRepository.obterParticipanteAtivoPorId(inscricaoDtoRequest.getParticipanteId()));
+        inscricao.setJogo(jogoRepository.obterJogoAtivoPorId(inscricaoDtoRequest.getIdJogo()));
+        inscricao.setParticipante(participanteRepository.obterParticipanteAtivoPorId(inscricaoDtoRequest.getIdParticipante()));
         Inscricao inscricaoSave = this.inscricaoRepository.save(inscricao);
         return modelMapper.map(inscricaoSave, InscricaoDtoResponse.class);
     }
@@ -53,8 +52,8 @@ public class InscricaoService {
         if(inscricao!= null){
             inscricao.setData(inscricaoDtoRequest.getData());
             inscricao.setStatus(inscricaoDtoRequest.getStatus());
-            inscricao.setJogo(jogoRepository.obterJogoAtivoPorId(inscricaoDtoRequest.getJogoId()));
-            inscricao.setParticipante(participanteRepository.obterParticipanteAtivoPorId(inscricaoDtoRequest.getParticipanteId()));
+            inscricao.setJogo(jogoRepository.obterJogoAtivoPorId(inscricaoDtoRequest.getIdJogo()));
+            inscricao.setParticipante(participanteRepository.obterParticipanteAtivoPorId(inscricaoDtoRequest.getIdParticipante()));
             Inscricao inscricaoTemp = this.inscricaoRepository.save(inscricao);
             return modelMapper.map(inscricaoTemp, InscricaoDtoResponse.class);
         }else{
