@@ -11,7 +11,6 @@ public class DataNascimentoValidator implements ConstraintValidator<ValidaDataNa
     public void initialize(ValidaDataNascimento constraintAnnotation){
 
     }
-
     @Override
     public boolean isValid(LocalDate dataNascimento, ConstraintValidatorContext context){
         if (dataNascimento == null){

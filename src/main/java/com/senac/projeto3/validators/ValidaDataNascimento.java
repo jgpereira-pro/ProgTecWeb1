@@ -1,6 +1,5 @@
 package com.senac.projeto3.validators;
 
-import com.senac.projeto3.validators.DataNascimentoValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

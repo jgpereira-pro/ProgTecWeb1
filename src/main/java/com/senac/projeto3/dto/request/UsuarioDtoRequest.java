@@ -42,4 +42,5 @@ public class UsuarioDtoRequest {
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+
 }
