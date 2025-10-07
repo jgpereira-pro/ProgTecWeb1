@@ -16,11 +16,11 @@ public interface PatrocinadorRepository extends JpaRepository<Patrocinador, Inte
     @Query("SELECT p FROM Patrocinador p WHERE p.status >=0")
     List<Patrocinador> listarPatrocinadores();
 
-    @Query("SELECT p FROM Patrocinador p WHERE p.id = :id AND p.status >=0")
+    @Query("SELECT p FROM Patrocinador p WHERE p.id = :id AND p.status >=0") // Corrigido
     Patrocinador obterPatrocinadoresAtivosPorId(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Patrocinador p SET p.status = -1 WHERE p.id = :id")
+    @Query("UPDATE Patrocinador p SET p.status = -1 WHERE p.id = :id") // Corrigido
     int apagadorLogico(@Param("id") int id);
 }

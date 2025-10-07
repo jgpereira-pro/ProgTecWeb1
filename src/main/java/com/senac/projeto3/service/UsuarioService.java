@@ -44,7 +44,7 @@ public class UsuarioService {
         return this.usuarioRepository.listarUsuariosAtivos();
     }
 
-    public Usuario listarUsuarioPorId(Integer idUsuario){
+    public Usuario listarUsuarioPorId(int idUsuario){
         return this.usuarioRepository.obterUsuarioAtivoPorId(idUsuario);
     }
 
@@ -77,24 +77,18 @@ public class UsuarioService {
         return modelMapper.map(usuarioSave, UsuarioDtoResponse.class);
     }
 
-    public UsuarioDtoResponse atualizar(Integer idUsuario, UsuarioDtoRequest usuarioDtoRequest){
+    public UsuarioDtoResponse atualizar(@Valid Integer idUsuario, UsuarioDtoRequest usuarioDtoRequest) {
         Usuario usuario = this.listarUsuarioPorId(idUsuario);
-        if (usuario != null){
+        if(usuario!= null){
             modelMapper.map(usuarioDtoRequest, usuario);
             Usuario usuarioTemp = this.usuarioRepository.save(usuario);
-            return modelMapper.map(usuarioTemp,UsuarioDtoResponse.class);
+            return modelMapper.map(usuarioTemp, UsuarioDtoResponse.class);
         }else{
             return null;
         }
-
     }
 
-    public void apagar(Integer idUsuario){
-        Usuario usuario = listarUsuarioPorId(idUsuario);
-        if (usuario != null) {
-            this.usuarioRepository.apagadorLogico(idUsuario);
-        }else{
-            System.out.println("Id não existe no banco de dados.");
-        }
+    public void apagar(Integer idUsuario) {
+        this.usuarioRepository.apagadorLogico(idUsuario);
     }
 }

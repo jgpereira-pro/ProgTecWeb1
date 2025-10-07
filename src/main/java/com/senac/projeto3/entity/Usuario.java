@@ -1,7 +1,6 @@
 package com.senac.projeto3.entity;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Role;
 
 import java.time.LocalDate;
 import java.util.List;
